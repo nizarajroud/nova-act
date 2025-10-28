@@ -23,27 +23,31 @@ python -m nova_act.samples.order_salad [--order <salad name>] [--headless]
 """
 
 import fire  # type: ignore
+from dotenv import load_dotenv
 
 from nova_act import NovaAct
 
+load_dotenv()
 
-def main(user_data_dir: str, order: str = "Shroomami", headless: bool = False) -> None:
+
+def main(user_data_dir: str, order: str = "Shroomami", headless: bool = False, address: str = "San Diego, CA 92127") -> None:
     with NovaAct(
         starting_page="https://order.sweetgreen.com",
         user_data_dir=user_data_dir,
         headless=headless,
+        clone_user_data_dir=False,
     ) as nova:
         nova.act(
             "If there is a cookie banner, close it. "
             "Click Menu at the top of the page. "
             "Click Delivery on the sidebar. "
-            "Select 'Home' address. "
+            "On the address bar enter {address}. "
             f"Scroll down and click on '{order}'. "
             "Click 'Add to Bag'. "
             "If visible, click 'Continue to bag', otherwise click the bag icon. "
             "Click 'Continue to checkout'. "
             "Select a 20% tip. "
-            "Click 'Place Order'."
+            # "Click 'Place Order'."
         )
 
 

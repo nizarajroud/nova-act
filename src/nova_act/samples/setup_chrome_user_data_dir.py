@@ -22,8 +22,11 @@ python -m nova_act.samples.setup_chrome_user_data_dir --user_data_dir <directory
 import os
 
 import fire  # type: ignore
+from dotenv import load_dotenv
 
 from nova_act import NovaAct
+
+load_dotenv()
 
 
 def main(user_data_dir: str) -> None:

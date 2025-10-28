@@ -16,8 +16,11 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import fire  # type: ignore
 import pandas as pd
 from pydantic import BaseModel
+from dotenv import load_dotenv
 
 from nova_act import ActAgentError, NovaAct
+
+load_dotenv()
 
 
 class Apartment(BaseModel):
